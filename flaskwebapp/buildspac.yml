@@ -5,7 +5,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 656003592847.dkr.ecr.us-east-1.amazonaws.com/flaskapp)
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 656003592847.dkr.ecr.us-east-1.amazonaws.com
       - REPOSITORY_URI=656003592847.dkr.ecr.us-east-1.amazonaws.com/flaskapp
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
@@ -21,3 +21,4 @@ phases:
 
 artifacts:
   files: imagedefinitions.json
+
